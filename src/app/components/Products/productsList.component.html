@@ -1,0 +1,23 @@
+<section class="product-list">
+  <div class="product" *ngFor="let product of products">
+    <section class="card">
+      <div class="card-details">
+        <img
+          class="img"
+          src="https://compragamer.net/pga/imagenes_publicadas/compragamer_Imganen_general_{{
+            product.imagenes[0].nombre
+          }}-med.jpg"
+        />
+        <p class="text-title">{{ product.nombre }}</p>
+
+        <div class="text-body">
+          <p class="text text-price">{{ formatPrice(product) }}</p>
+
+          <p class="text">{{ product.subcategoria?.nombre }}</p>
+        </div>
+      </div>
+
+      <button class="card-button" (click)="addToCart(product)">Comprar</button>
+    </section>
+  </div>
+</section>

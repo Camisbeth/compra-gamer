@@ -1,6 +1,4 @@
 import { Injectable } from '@angular/core';
-import { of, Observable } from 'rxjs';
-import { delay } from 'rxjs/operators';
 import { User } from '../types/userType';
 
 @Injectable({

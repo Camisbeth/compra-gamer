@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { RegisterService } from 'src/app/services/register.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -9,11 +10,15 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class RegisterComponent implements OnInit {
   registrationForm!: FormGroup;
+  isRegisterOpen: boolean;
 
   constructor(
     private formBuilder: FormBuilder,
-    private userService: UserService
-  ) {}
+    private userService: UserService,
+    private registerService: RegisterService
+  ) {
+    this.isRegisterOpen = registerService.getRegisterStatus();
+  }
 
   ngOnInit() {
     this.registrationForm = this.formBuilder.group({
@@ -33,6 +38,10 @@ export class RegisterComponent implements OnInit {
     } else {
       this.markAllFieldsAsTouched();
     }
+  }
+
+  handleRegister() {
+    this.registerService.handleRegister();
   }
 
   markAllFieldsAsTouched() {
