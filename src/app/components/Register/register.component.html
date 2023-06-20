@@ -1,0 +1,72 @@
+<!-- user-registration.component.html -->
+<form [formGroup]="registrationForm" (ngSubmit)="onSubmit()" novalidate>
+  <div>
+    <label>Nombre:</label>
+    <input type="text" formControlName="firstName" />
+    <div
+      *ngIf="
+        registrationForm.get('firstName')?.invalid &&
+        registrationForm.get('firstName')?.touched
+      "
+    >
+      <small>El nombre es requerido.</small>
+    </div>
+  </div>
+
+  <div>
+    <label>Apellido:</label>
+    <input type="text" formControlName="lastName" />
+    <div
+      *ngIf="
+        registrationForm.get('lastName')?.invalid &&
+        registrationForm.get('lastName')?.touched
+      "
+    >
+      <small>El apellido es requerido.</small>
+    </div>
+  </div>
+
+  <div>
+    <label>DNI:</label>
+    <input type="text" formControlName="dni" />
+    <div
+      *ngIf="
+        registrationForm.get('dni')?.invalid &&
+        registrationForm.get('dni')?.touched
+      "
+    >
+      <small>El DNI es requerido y debe contener 8 dígitos.</small>
+    </div>
+  </div>
+
+  <div>
+    <label>Email:</label>
+    <input type="email" formControlName="email" />
+    <div
+      *ngIf="
+        registrationForm.get('email')?.invalid &&
+        registrationForm.get('email')?.touched
+      "
+    >
+      <small
+        >El correo electrónico es requerido y debe tener un formato
+        válido.</small
+      >
+    </div>
+  </div>
+
+  <div>
+    <label>Teléfono:</label>
+    <input type="text" formControlName="phone" />
+    <div
+      *ngIf="
+        registrationForm.get('phone')?.invalid &&
+        registrationForm.get('phone')?.touched
+      "
+    >
+      <small>El teléfono es requerido y debe contener 10 dígitos.</small>
+    </div>
+  </div>
+
+  <button type="submit">Registrarse</button>
+</form>
