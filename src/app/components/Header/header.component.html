@@ -5,7 +5,7 @@
 
   <section class="sectionLinks">
     <div class="links">
-      <a class="header-link">Registrarse</a>
+      <a class="header-link" (click)="handleRegister()">Registrarse</a>
     </div>
 
     <div>
@@ -52,4 +52,9 @@
       <p class="empty">No tienes productos en tu carrito.</p>
     </div>
   </section>
+</section>
+
+<div *ngIf="isRegisterOpen" class="overlay" (click)="handleRegister()"></div>
+<section class="register-container">
+  <app-user-registration *ngIf="isRegisterOpen" />
 </section>

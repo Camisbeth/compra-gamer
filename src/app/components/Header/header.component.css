@@ -147,7 +147,7 @@
 
 .register-container {
   position: absolute;
-  top: 320%;
-  left: 50%;
+  top: 50%;
   z-index: 999;
+  left: 50%;
 }
