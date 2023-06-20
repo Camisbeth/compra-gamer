@@ -12,7 +12,9 @@
       class="cart-button fas fa-shopping-cart fa-xl"
       matBadgePosition="above after"
       (click)="handleModal()"
-    ></button>
+    >
+      {{ cartItems.length }}
+    </button>
   </div>
   <div class="modal-container" [ngClass]="{ open: handleModal }">
     <ul
@@ -27,15 +29,17 @@
       />
       <li class="productname">{{ product.nombre }}</li>
       <li>
-        <p>{{ currencyPipe.transform(product.precio, "ARS") }}</p>
+        <p>{{ formatPrice(product) }}</p>
       </li>
       <li>
-        <button (click)="ngOnDestroy()">Borrar</button>
+        <p>{{ product.subcategoria?.nombre }}</p>
+      </li>
+      <li>
+        <button (click)="removeProductFromCart(product)">Borrar</button>
       </li>
       <hr />
     </ul>
     <hr />
-    <button class="close-button" (click)="handleModal()">Cerrar carrito</button>
     <div *ngFor="let cartItem of cartItems">
       <p>{{ cartItem.nombre }}</p>
     </div>

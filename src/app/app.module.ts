@@ -6,10 +6,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/Header/header.component';
-import { RegisterComponent } from './components/Register/register.component';
+import { ProductListComponent } from './components/Products/productsList.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, RegisterComponent],
+  declarations: [AppComponent, HeaderComponent, ProductListComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
