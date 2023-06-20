@@ -1,22 +1,61 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
-import { delay } from 'rxjs/operators';
+import { User } from '../types/userType';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  saveUser(user: Record<string, string | number>): Observable<any> {
+  constructor() {}
+
+  getUsers() {
+    const users = localStorage.getItem('users');
+
+    if (!users) return;
+
+    return JSON.parse(users);
+  }
+
+  getUser() {
+    const user = localStorage.getItem('loggedUser');
+    if (!user) return;
+
+    return JSON.parse(user);
+  }
+
+  createUser(newUser: User) {
     const savedUsers = localStorage.getItem('users');
-    let users: Record<string, string | number>[] = [];
+    let users: User[] = [];
 
     if (savedUsers) {
       users = JSON.parse(savedUsers);
     }
-    users.push(user);
-    localStorage.setItem('user', JSON.stringify(user));
 
-    return of(user).pipe(delay(1000));
+    users.push(newUser);
+
+    localStorage.setItem('users', JSON.stringify(users));
+
+    this.fakeLogin(newUser);
+
+    return newUser;
+  }
+
+  fakeLogin(user: User) {
+    window.dispatchEvent(new Event('login'));
+    localStorage.setItem('loggedUser', JSON.stringify(user));
+  }
+
+  logout() {
+    window.dispatchEvent(new Event('login'));
+    localStorage.removeItem('loggedUser');
+
+    return this.getUser();
+  }
+
+  getExistingUsers() {
+    const users = localStorage.getItem('users');
+
+    if (!users) return [];
+
+    return JSON.parse(users);
   }
 }

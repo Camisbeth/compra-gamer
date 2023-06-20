@@ -5,8 +5,7 @@
 
   <section class="sectionLinks">
     <div class="links">
-      <a class="header-link" routerLink="/app-register">Registrarse</a>
-      <a class="header-link" routerLink="/app-product-list">Productos</a>
+      <a class="header-link">Registrarse</a>
     </div>
 
     <div>
@@ -16,38 +15,41 @@
       </button>
     </div>
   </section>
+</header>
 
-  <div class="modalContainer" (click)="handleModal()">
-    <section *ngIf="isModalOpen" class="cartSection">
-      <ul
-        class="modal-list"
-        *ngFor="let product of cartItems"
-        style="color: black"
-      >
-        <img
-          src="https://compragamer.net/pga/imagenes_publicadas/compragamer_Imganen_general_{{
-            product.imagenes[0].nombre
-          }}-med.jpg"
-        />
+<div *ngIf="isModalOpen" class="overlay" (click)="handleModal()"></div>
+<section *ngIf="isModalOpen" class="modal-container">
+  <section class="cart-section">
+    <ul
+      class="modal-list"
+      *ngFor="let product of cartItems"
+      style="color: black"
+    >
+      <img
+        class="image"
+        src="https://compragamer.net/pga/imagenes_publicadas/compragamer_Imganen_general_{{
+          product.imagenes[0].nombre
+        }}-med.jpg"
+      />
+
+      <div class="item">
         <li class="productname">{{ product.nombre }}</li>
         <li>
-          <p>{{ formatPrice(product) }}</p>
+          <p class="text">{{ formatPrice(product) }}</p>
         </li>
         <li>
-          <p>{{ product.subcategoria?.nombre }}</p>
+          <p class="text">{{ product.subcategoria?.nombre }}</p>
         </li>
         <li>
-          <button (click)="removeProductFromCart(product)">Borrar</button>
+          <mat-icon (click)="removeProductFromCart(product)" class="delete"
+            >delete</mat-icon
+          >
         </li>
-        <hr />
-      </ul>
+      </div>
+    </ul>
 
-      <div *ngFor="let cartItem of cartItems">
-        <p>{{ cartItem.nombre }}</p>
-      </div>
-      <div *ngIf="cartItems.length === 0">
-        <p>No tienes productos en tu carrito.</p>
-      </div>
-    </section>
-  </div>
-</header>
+    <div *ngIf="cartItems.length === 0">
+      <p class="empty">No tienes productos en tu carrito.</p>
+    </div>
+  </section>
+</section>

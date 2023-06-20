@@ -2,8 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { Product } from 'src/app/types/productType';
+import { UserService } from 'src/app/services/user.service';
+import { User } from 'src/app/types/userType';
 import { CartService } from 'src/app/services/cart.service';
 import { ProductService } from 'src/app/services/product.service';
+import { RegisterService } from 'src/app/services/register.service';
 
 @Component({
   selector: 'app-header',
@@ -14,12 +17,15 @@ import { ProductService } from 'src/app/services/product.service';
 export class HeaderComponent implements OnInit {
   constructor(
     private snackBar: MatSnackBar,
+    private userService: UserService,
     private cartService: CartService,
-    private productService: ProductService
+    private productService: ProductService,
+    private registerService: RegisterService
   ) {}
 
   isModalOpen: boolean = false;
   cartItems: Product[] = [];
+  loggedUser: User | undefined = undefined;
 
   handleModal(): void {
     this.isModalOpen = !this.isModalOpen;
@@ -35,10 +41,20 @@ export class HeaderComponent implements OnInit {
       this.cartItems = JSON.parse(localStorage.getItem('cart')!);
     }
 
+    if (localStorage.getItem('loggedUsesr') != null) {
+      this.loggedUser = JSON.parse(localStorage.getItem('loggedUser')!);
+    }
+
     window.addEventListener('storage', () => {
       const newList = this.cartService.getParsedCart();
       this.cartItems = newList;
     });
+
+    window.addEventListener('login', () => {
+      this.loggedUser = this.userService.getUser();
+    });
+
+    this.userService.getUser();
   }
 
   ngOnDestroy(): void {
@@ -46,10 +62,35 @@ export class HeaderComponent implements OnInit {
       const newList = this.cartService.getParsedCart();
       this.cartItems = newList;
     });
+
+    window.removeEventListener('login', () => {
+      this.loggedUser = this.userService.getUser();
+    });
+
+    window.addEventListener('storage', () => {
+      const newList = this.cartService.getParsedCart();
+      this.cartItems = newList;
+    });
   }
 
   removeProductFromCart(product: Product) {
     this.cartService.removeProduct(product);
+  }
+
+  getUserData() {
+    this.loggedUser = this.userService.getUser();
+  }
+
+  logout() {
+    this.loggedUser = this.userService.logout();
+  }
+
+  get isRegisterOpen(): boolean {
+    return this.registerService.getRegisterStatus();
+  }
+
+  handleRegister() {
+    this.registerService.handleRegister();
   }
 
   formatPrice(product: Product) {

@@ -8,9 +8,15 @@ import { MatIconModule } from '@angular/material/icon';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/Header/header.component';
 import { ProductListComponent } from './components/Products/productsList.component';
+import { RegisterComponent } from './components/Register/register.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, ProductListComponent],
+  declarations: [
+    AppComponent,
+    HeaderComponent,
+    ProductListComponent,
+    RegisterComponent,
+  ],
   imports: [
     BrowserModule,
     HttpClientModule,

@@ -1,0 +1,84 @@
+<div class="login-box">
+  <p class="title">Registro</p>
+  <mat-icon class="close" (click)="handleRegister()">close</mat-icon>
+
+  <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()" novalidate>
+    <div class="user-box">
+      <input type="text" formControlName="firstName" required="" />
+      <label>Nombre</label>
+      <div
+        *ngIf="
+          registrationForm.get('firstName')?.invalid &&
+          registrationForm.get('firstName')?.touched
+        "
+        class="error"
+      >
+        <small>El nombre es requerido.</small>
+      </div>
+    </div>
+    <div class="user-box">
+      <input type="text" formControlName="lastName" required="" />
+      <label>Apellido</label>
+      <div
+        *ngIf="
+          registrationForm.get('lastName')?.invalid &&
+          registrationForm.get('lastName')?.touched
+        "
+        class="error"
+      >
+        <small>El apellido es requerido.</small>
+      </div>
+    </div>
+    <div class="user-box">
+      <input type="text" formControlName="dni" required="" />
+      <label>DNI</label>
+      <div
+        *ngIf="
+          registrationForm.get('dni')?.invalid &&
+          registrationForm.get('dni')?.touched
+        "
+        class="error"
+      >
+        <small>El DNI es requerido y debe contener 8 dígitos.</small>
+      </div>
+    </div>
+    <div class="user-box">
+      <input type="text" formControlName="email" required="" />
+      <label>Email</label>
+      <div
+        *ngIf="
+          registrationForm.get('email')?.invalid &&
+          registrationForm.get('email')?.touched
+        "
+        class="error"
+      >
+        <small
+          >El correo electrónico es requerido y debe tener un formato
+          válido.</small
+        >
+      </div>
+    </div>
+    <div class="user-box">
+      <input type="text" formControlName="phone" required="" />
+      <label>Teléfono</label>
+      <div
+        *ngIf="
+          registrationForm.get('phone')?.invalid &&
+          registrationForm.get('phone')?.touched
+        "
+        class="error"
+      >
+        <small>El teléfono es requerido y debe contener 10 dígitos.</small>
+      </div>
+    </div>
+    <button type="submit">
+      <a>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        Registrarse
+      </a>
+    </button>
+  </form>
+</div>
