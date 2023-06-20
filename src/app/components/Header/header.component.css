@@ -78,18 +78,74 @@
   gap: 16px;
 }
 
-.modalContainer {
+.modal-container {
   position: absolute;
-  right: 8%;
-  top: 70%;
-  width: 300px;
+  right: 0;
+  top: 100px;
+  width: 380px;
+  z-index: 99;
 }
 
-.cartSection {
+.overlay {
   position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 99;
 }
 
-.registerContainer {
+.modal-container .cart-section {
+  border: 2px solid #ffa300;
+  background-color: white;
+}
+
+.modal-container .cart-section .empty {
+  padding: 16px;
+}
+
+.modal-list {
+  list-style: none;
+  display: flex;
+  padding: 24px 8px;
+  margin: 0;
+  border-bottom: 1px solid lightgray;
+  font-size: 0.8rem;
+  gap: 16px;
+}
+
+.modal-list .image {
+  margin: 0;
+  padding: 0;
+  width: 75px;
+  height: 75px;
+  object-fit: cover;
+}
+
+.modal-list .item {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+}
+
+.modal-list .item .delete {
+  position: absolute;
+  right: 0;
+  cursor: pointer;
+  font-size: 1rem;
+  top: -20px;
+}
+
+.modal-list .item .delete:hover {
+  color: #ffa300;
+}
+
+.text {
+  margin: 0;
+}
+
+.register-container {
   position: absolute;
   top: 320%;
   left: 50%;
