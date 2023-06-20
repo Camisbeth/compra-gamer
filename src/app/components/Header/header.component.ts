@@ -16,7 +16,6 @@ import { RegisterService } from 'src/app/services/register.service';
 })
 export class HeaderComponent implements OnInit {
   constructor(
-    private snackBar: MatSnackBar,
     private userService: UserService,
     private cartService: CartService,
     private productService: ProductService,

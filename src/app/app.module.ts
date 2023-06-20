@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 
@@ -20,7 +19,6 @@ import { RegisterComponent } from './components/Register/register.component';
   imports: [
     BrowserModule,
     HttpClientModule,
-    MatSnackBarModule,
     FormsModule,
     ReactiveFormsModule,
     MatIconModule,
