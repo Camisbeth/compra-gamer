@@ -1,50 +1,53 @@
 <header class="header" id="app-header">
   <div class="logo">
-    <img src="../../assets/image.svg" routerLink="/" alt="" />
+    <h1 class="fontLekton">COMPRA GAMER</h1>
   </div>
-  <div class="links">
-    <a class="header-link" routerLink="/app-register">Registrarse</a>
-    <a class="header-link" routerLink="/app-product-list">Productos</a>
-  </div>
-  <div>
-    <button
-      class="cart-button"
-      class="cart-button fas fa-shopping-cart fa-xl"
-      matBadgePosition="above after"
-      (click)="handleModal()"
-    >
-      {{ cartItems.length }}
-    </button>
-  </div>
-  <div class="modal-container" [ngClass]="{ open: handleModal }">
-    <ul
-      class="modal-list"
-      *ngFor="let product of cartItems"
-      style="color: black"
-    >
-      <img
-        src="https://compragamer.net/pga/imagenes_publicadas/compragamer_Imganen_general_{{
-          product.imagenes[0].nombre
-        }}-med.jpg"
-      />
-      <li class="productname">{{ product.nombre }}</li>
-      <li>
-        <p>{{ formatPrice(product) }}</p>
-      </li>
-      <li>
-        <p>{{ product.subcategoria?.nombre }}</p>
-      </li>
-      <li>
-        <button (click)="removeProductFromCart(product)">Borrar</button>
-      </li>
-      <hr />
-    </ul>
-    <hr />
-    <div *ngFor="let cartItem of cartItems">
-      <p>{{ cartItem.nombre }}</p>
+
+  <section class="sectionLinks">
+    <div class="links">
+      <a class="header-link" routerLink="/app-register">Registrarse</a>
+      <a class="header-link" routerLink="/app-product-list">Productos</a>
     </div>
-    <div *ngIf="cartItems.length === 0">
-      <p>No tienes productos en tu carrito.</p>
+
+    <div>
+      <button class="cart-button" (click)="handleModal()">
+        <mat-icon>shopping_cart</mat-icon>
+        {{ cartItems.length !== 0 ? cartItems.length : "" }}
+      </button>
     </div>
+  </section>
+
+  <div class="modalContainer" (click)="handleModal()">
+    <section *ngIf="isModalOpen" class="cartSection">
+      <ul
+        class="modal-list"
+        *ngFor="let product of cartItems"
+        style="color: black"
+      >
+        <img
+          src="https://compragamer.net/pga/imagenes_publicadas/compragamer_Imganen_general_{{
+            product.imagenes[0].nombre
+          }}-med.jpg"
+        />
+        <li class="productname">{{ product.nombre }}</li>
+        <li>
+          <p>{{ formatPrice(product) }}</p>
+        </li>
+        <li>
+          <p>{{ product.subcategoria?.nombre }}</p>
+        </li>
+        <li>
+          <button (click)="removeProductFromCart(product)">Borrar</button>
+        </li>
+        <hr />
+      </ul>
+
+      <div *ngFor="let cartItem of cartItems">
+        <p>{{ cartItem.nombre }}</p>
+      </div>
+      <div *ngIf="cartItems.length === 0">
+        <p>No tienes productos en tu carrito.</p>
+      </div>
+    </section>
   </div>
 </header>

@@ -4,7 +4,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Product } from 'src/app/types/productType';
 import { CartService } from 'src/app/services/cart.service';
 import { ProductService } from 'src/app/services/product.service';
-import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-header',

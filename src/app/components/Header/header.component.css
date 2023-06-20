@@ -1,0 +1,90 @@
+.header {
+  display: flex;
+  font-family: "Lekton", sans-serif;
+  width: 90%;
+  margin: 0 auto;
+  position: relative;
+  justify-content: space-between;
+}
+
+.fontLekton {
+  font-family: "Lekton", sans-serif;
+  letter-spacing: 5px;
+  color: #ffa300;
+}
+
+.sectionLinks {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.header-link {
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+}
+
+.header-link:hover {
+  border-bottom: 2px solid #ffa300;
+}
+
+.cart-button {
+  font-family: "Lekton", sans-serif;
+  cursor: pointer;
+  position: relative;
+  padding: 8px 18px;
+  font-size: 18px;
+  color: #ffa300;
+  border: 2px solid #ffa300;
+  border-radius: 34px;
+  background-color: transparent;
+  font-weight: 600;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.cart-button::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 50px;
+  height: 50px;
+  border-radius: inherit;
+  scale: 0;
+  z-index: -1;
+  background-color: #ffa300;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.cart-button:hover::before {
+  scale: 3;
+}
+
+.cart-button:hover {
+  color: #ffffff;
+  scale: 1.1;
+  box-shadow: 0 0px 20px rgba(193, 163, 98, 0.4);
+}
+
+.cart-button:active {
+  scale: 1;
+}
+
+.links {
+  display: flex;
+  gap: 16px;
+}
+
+.modalContainer {
+  position: absolute;
+  right: 8%;
+  top: 70%;
+  width: 300px;
+}
+
+.cartSection {
+  position: absolute;
+}
