@@ -4,6 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { CurrencyPipe } from '@angular/common';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Product } from 'src/app/types/productType';
+import { UserService } from 'src/app/services/user.service';
+import { User } from 'src/app/types/userType';
 
 @Component({
   selector: 'app-header',
@@ -16,7 +18,8 @@ export class HeaderComponent implements OnInit {
     private router: Router,
     private http: HttpClient,
     private snackBar: MatSnackBar,
-    currencyPipe: CurrencyPipe
+    currencyPipe: CurrencyPipe,
+    private userService: UserService
   ) {
     this.currencyPipe = currencyPipe;
   }
@@ -24,6 +27,8 @@ export class HeaderComponent implements OnInit {
   isModalOpen: boolean = false;
   cartItems: Product[] = [];
   currencyPipe: CurrencyPipe;
+  loggedUser: User | undefined = undefined;
+  isRegisterOpen: boolean = false;
 
   handleModal(): void {
     this.isModalOpen = !this.isModalOpen;
@@ -62,15 +67,46 @@ export class HeaderComponent implements OnInit {
     if (localStorage.getItem('cart') != null) {
       this.cartItems = JSON.parse(localStorage.getItem('cart')!);
     }
+
+    if (localStorage.getItem('loggedUsesr') != null) {
+      this.loggedUser = JSON.parse(localStorage.getItem('loggedUser')!);
+    }
+
     window.addEventListener('storage', this.updateCart);
+
+    window.addEventListener('login', () => {
+      const bla = this.userService.getUser();
+      console.log(bla);
+      this.loggedUser = bla;
+    });
+
+    this.getUserData();
   }
 
   ngOnDestroy(): void {
     window.removeEventListener('storage', this.updateCart);
+
+    window.removeEventListener('login', () => {
+      const bla = this.userService.getUser();
+      console.log(bla);
+      this.loggedUser = bla;
+    });
   }
 
   goToCart() {
     this.router.navigate(['/carrito']);
+  }
+
+  getUserData() {
+    this.loggedUser = this.userService.getUser();
+  }
+
+  logout() {
+    this.loggedUser = this.userService.logout();
+  }
+
+  handleRegister() {
+    this.isRegisterOpen = !this.isRegisterOpen;
   }
 
   private updateCart = () => {

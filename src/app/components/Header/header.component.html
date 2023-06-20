@@ -3,7 +3,10 @@
     <img src="../../assets/image.svg" routerLink="/" alt="" />
   </div>
   <div class="links">
-    <a class="header-link" routerLink="/app-register">Registrarse</a>
+    <a *ngIf="!loggedUser" class="header-link" (click)="handleRegister()"
+      >Registrarse</a
+    >
+    <a *ngIf="loggedUser" class="header-link" (click)="logout()">Desconectar</a>
     <a class="header-link" routerLink="/app-product-list">Productos</a>
   </div>
   <div>
@@ -43,4 +46,5 @@
       <p>No tienes productos en tu carrito.</p>
     </div>
   </div>
+  <app-user-registration *ngIf="isRegisterOpen" />
 </header>

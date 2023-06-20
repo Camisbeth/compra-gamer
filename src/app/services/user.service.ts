@@ -19,13 +19,12 @@ export class UserService {
 
   getUser() {
     const user = localStorage.getItem('loggedUser');
-
     if (!user) return;
 
     return JSON.parse(user);
   }
 
-  createUser(newUser: User): Observable<any> {
+  createUser(newUser: User) {
     const savedUsers = localStorage.getItem('users');
     let users: User[] = [];
 
@@ -34,19 +33,24 @@ export class UserService {
     }
 
     users.push(newUser);
-    this.fakeLogin(newUser);
 
     localStorage.setItem('users', JSON.stringify(users));
 
-    return of(newUser).pipe(delay(1000));
+    this.fakeLogin(newUser);
+
+    return newUser;
   }
 
   fakeLogin(user: User) {
+    window.dispatchEvent(new Event('login'));
     localStorage.setItem('loggedUser', JSON.stringify(user));
   }
 
   logout() {
+    window.dispatchEvent(new Event('login'));
     localStorage.removeItem('loggedUser');
+
+    return this.getUser();
   }
 
   getExistingUsers() {
