@@ -5,7 +5,13 @@
 
   <section class="sectionLinks">
     <div class="links">
-      <a class="header-link" (click)="handleRegister()">Registrarse</a>
+      <a *ngIf="!loggedUser" class="header-link" (click)="handleRegister()"
+        >Registrarse</a
+      >
+      <a *ngIf="loggedUser">{{ loggedUser.firstName }}</a>
+      <a *ngIf="loggedUser" class="header-link" (click)="logout()"
+        >Desconectarse</a
+      >
     </div>
 
     <div>

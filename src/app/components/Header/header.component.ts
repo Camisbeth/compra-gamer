@@ -41,10 +41,6 @@ export class HeaderComponent implements OnInit {
       this.cartItems = JSON.parse(localStorage.getItem('cart')!);
     }
 
-    if (localStorage.getItem('loggedUsesr') != null) {
-      this.loggedUser = JSON.parse(localStorage.getItem('loggedUser')!);
-    }
-
     window.addEventListener('storage', () => {
       const newList = this.cartService.getParsedCart();
       this.cartItems = newList;
@@ -54,7 +50,9 @@ export class HeaderComponent implements OnInit {
       this.loggedUser = this.userService.getUser();
     });
 
-    this.userService.getUser();
+    if (localStorage.getItem('loggedUser') != null) {
+      this.loggedUser = this.userService.getUser();
+    }
   }
 
   ngOnDestroy(): void {

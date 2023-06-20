@@ -35,6 +35,7 @@ export class RegisterComponent implements OnInit {
 
     if (valid) {
       this.userService.createUser(newUser);
+      this.registerService.handleRegister();
     } else {
       this.markAllFieldsAsTouched();
     }
