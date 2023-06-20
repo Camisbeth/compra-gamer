@@ -1,4 +1,4 @@
-type SubcategoryType = {
+export type Subcategory = {
   id: number;
   nombre: string;
   id_agrupador: number;

@@ -1,4 +1,5 @@
 import { Image } from './imageType';
+import { Subcategory } from './subcategoryType';
 
 export type Product = {
   destacado: number;
@@ -11,4 +12,5 @@ export type Product = {
   stock: number;
   garantia: number;
   iva: number;
+  subcategoria?: Subcategory;
 };

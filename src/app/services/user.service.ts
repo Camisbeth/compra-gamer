@@ -6,16 +6,7 @@ import { delay } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root',
 })
-export class ApiService {
-  private baseUrl = 'https://static.compragamer.com/test'; // URL base de la API
-
-  constructor(private http: HttpClient) {}
-
-  get<T>(endpoint: string): Observable<T> {
-    const url = `${this.baseUrl}/${endpoint}.json`;
-    return this.http.get<T>(url);
-  }
-
+export class UserService {
   saveUser(user: Record<string, string | number>): Observable<any> {
     const savedUsers = localStorage.getItem('users');
     let users: Record<string, string | number>[] = [];
