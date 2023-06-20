@@ -23,16 +23,4 @@ export class ApiService {
     const image = [productName, url];
     return of(image);
   }
-  saveUser(user: Record<string, string | number>): Observable<any> {
-    const savedUsers = localStorage.getItem('users');
-    let users: Record<string, string | number>[] = [];
-
-    if (savedUsers) {
-      users = JSON.parse(savedUsers);
-    }
-    users.push(user);
-    localStorage.setItem('user', JSON.stringify(user));
-
-    return of(user).pipe(delay(1000));
-  }
 }
